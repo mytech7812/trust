@@ -23,7 +23,7 @@
  <div class=home-header>
  <div class=wallet-selector>
  <div class=wallet-avatar><i class="fa-solid fa-wallet"></i></div>
- <span class=wallet-name>Jason Michael Statham</span>
+<span class=wallet-name id="wallet-name">Jason Michael Statham</span>
  <i class="fa-solid fa-chevron-down" style=font-size:10px></i>
  </div>
  <div class=header-controls>
@@ -155,6 +155,9 @@
  </div>
  </div>
 <script>
+  var savedName = localStorage.getItem('walletUser');
+  if (savedName) document.getElementById('wallet-name').textContent = savedName;
+
   document.getElementById('receive-btn').addEventListener('click', function () {
     window.location.href = 'receive.html';
   });

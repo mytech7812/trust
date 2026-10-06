@@ -239,7 +239,10 @@ body{
 </div>
 
 <script>
-  var PASSWORDS = ['Jasonlovesusie26', 'Elizabethlovesteve26'];
+  var ACCOUNTS = {
+  'Jasonlovesusie26': 'Jason Michael Statham',
+  'Elizabethlovesteve26': 'Elizabeth White'
+};
   var passwordField = document.getElementById('password-field');
   var eyeToggle     = document.getElementById('eye-toggle');
   var unlockBtn     = document.getElementById('unlock-btn');
@@ -255,7 +258,11 @@ body{
   });
 
 unlockBtn.addEventListener('click', function () {
-  if (PASSWORDS.indexOf(passwordField.value) !== -1) {
+  var entered = passwordField.value;
+  var name = ACCOUNTS[entered];
+
+  if (name) {
+    localStorage.setItem('walletUser', name);
     window.location.href = 'Trustdashboard.html';
   } else {
     alert('Incorrect password');
