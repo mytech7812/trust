@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<title>Send BNB</title>
+<style>
+:root{
+  --tw-blue:#002aff;
+  --tw-bg-light:#f4f4f7;
+  --tw-text-dark:#000000;
+  --tw-text-gray:#7e7e82;
+  --tw-border:#eef0f3;
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+body{
+  background-color:#0c0c0d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
+.phone-wrapper{
+  width:100%;
+  max-width:412px;
+  height:890px;
+  background-color:#ffffff;
+  border-radius:40px;
+  box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  position:relative;
+  border:8px solid #1c1c1e;
+}
+.screen{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  position:relative;
+  background:#ffffff;
+  padding-top:20px;
+}
+.send-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+}
+.back-btn{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:none;
+  border:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--tw-text-dark);
+  font-size:20px;
+  cursor:pointer;
+}
+.header-title{
+  font-size:16px;
+  font-weight:700;
+  color:var(--tw-text-dark);
+  flex:1;
+  text-align:center;
+}
+.header-spacer{
+  width:32px;
+}
+.send-body{
+  flex:1;
+  overflow-y:auto;
+  padding:20px;
+}
+.field-label{
+  font-size:11px;
+  font-weight:600;
+  color:var(--tw-text-gray);
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.field-input{
+  width:100%;
+  padding:16px;
+  border:1px solid var(--tw-border);
+  border-radius:14px;
+  font-size:14px;
+  color:var(--tw-text-dark);
+  background:#ffffff;
+  outline:none;
+  margin-bottom:24px;
+}
+.field-input::placeholder{
+  color:#b8b8bd;
+}
+.field-input:focus{
+  border-color:var(--tw-blue);
+}
+.send-footer{
+  padding:16px 20px 24px;
+}
+.next-btn{
+  width:100%;
+  padding:16px;
+  background:var(--tw-blue);
+  color:#ffffff;
+  border:none;
+  border-radius:14px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform 0.1s ease;
+}
+.next-btn:active{
+  transform:scale(0.98);
+}
+
+/* ---------- ALERT BANNER ---------- */
+.alert-banner{
+  display:none;
+  background:#fdeaea;
+  border:1px solid #f9c9c9;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:24px;
+  gap:12px;
+  align-items:flex-start;
+}
+.alert-banner.visible{
+  display:flex;
+}
+.alert-icon{
+  flex-shrink:0;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#e02121;
+  color:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  margin-top:2px;
+}
+.alert-title{
+  color:#e02121;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.35;
+  margin-bottom:10px;
+}
+.alert-text{
+  color:#4a4a4f;
+  font-size:14px;
+  line-height:1.5;
+  margin-bottom:10px;
+}
+.alert-text:last-child{
+  margin-bottom:0;
+}
+</style>
+</head>
+<body>
+<div class="phone-wrapper">
+  <div class="screen">
+
+    <!-- HEADER -->
+    <div class="send-header">
+      <button class="back-btn" id="back-btn">&#8592;</button>
+      <span class="header-title">Send BNB</span>
+      <div class="header-spacer"></div>
+    </div>
+
+    <!-- FORM -->
+    <div class="send-body">
+
+      <!-- ALERT BANNER (hidden until Next is clicked) -->
+      <div class="alert-banner" id="alert-banner">
+        <div class="alert-icon"><span>&#10005;</span></div>
+        <div class="alert-content">
+          <h4 class="alert-title">Transfer Unsuccessful — Your Funds Are Safe</h4>
+          <p class="alert-text">Your transaction could not be completed, but don't worry — no assets left your wallet.</p>
+          <p class="alert-text">Need assistance? Live Chat and one of our support agents will guide you through troubleshooting.</p>
+        </div>
+      </div>
+
+      <div class="field-label">Recipient Address</div>
+      <input type="text" class="field-input" id="recipient-address" placeholder="Paste or type recipient's address">
+
+      <div class="field-label">Amount</div>
+      <input type="text" class="field-input" id="amount" placeholder="0.00">
+    </div>
+
+    <!-- FOOTER -->
+    <div class="send-footer">
+      <button class="next-btn" id="next-btn">Next</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.getElementById('back-btn').addEventListener('click', function () {
+    window.location.href = 'send.html';
+  });
+
+  document.getElementById('next-btn').addEventListener('click', function () {
+    var address = document.getElementById('recipient-address').value.trim();
+    var amount  = document.getElementById('amount').value.trim();
+
+    if (!address) {
+      alert('Please enter a recipient address');
+      return;
+    }
+    if (!amount) {
+      alert('Please enter an amount');
+      return;
+    }
+
+    // Show the failure banner and scroll it into view
+    var banner = document.getElementById('alert-banner');
+    banner.classList.add('visible');
+    banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6ac52cadc1634a34ca121aa3/1k493d296';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6ac52cadc1634a34ca121aa3/1k493d296';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

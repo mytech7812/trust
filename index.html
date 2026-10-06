@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<title>Trust Wallet</title>
+<style>
+:root{
+  --tw-blue:#002aff;
+  --tw-text-dark:#000000;
+  --tw-text-gray:#7e7e82;
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+body{
+  background-color:#0c0c0d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
+.phone-wrapper{
+  width:100%;
+  max-width:412px;
+  height:890px;
+  background-color:#ffffff;
+  border-radius:40px;
+  box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  position:relative;
+  border:8px solid #1c1c1e;
+}
+.screen{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  background:#ffffff;
+  padding:24px;
+}
+
+/* ---------- MAIN CENTER BLOCK ---------- */
+.unlock-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding-bottom:40px;
+}
+
+/* Shield logo (pure CSS) */
+.shield-logo{
+  position:relative;
+  width:70px;
+  height:80px;
+  margin-bottom:24px;
+}
+.shield-logo svg{
+  width:100%;
+  height:100%;
+}
+
+.trust-wordmark{
+  font-size:20px;
+  font-weight:800;
+  color:var(--tw-blue);
+  letter-spacing:2px;
+  margin-bottom:28px;
+}
+
+.subtitle{
+  font-size:14px;
+  color:#3a3a3f;
+  text-align:center;
+  line-height:1.4;
+  max-width:260px;
+  margin-bottom:36px;
+  font-weight:500;
+}
+
+/* ---------- PASSWORD FIELD ---------- */
+.password-block{
+  width:100%;
+  margin-bottom:24px;
+}
+.password-label{
+  font-size:13px;
+  color:#3a3a3f;
+  margin-bottom:8px;
+  font-weight:500;
+}
+.password-input-wrap{
+  position:relative;
+  width:100%;
+}
+.password-input{
+  width:100%;
+  padding:16px 48px 16px 16px;
+  border:none;
+  border-radius:12px;
+  background:#f0f1f3;
+  font-size:15px;
+  color:var(--tw-text-dark);
+  outline:none;
+}
+.password-input::placeholder{
+  color:#b8b8bd;
+}
+.eye-toggle{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:#8a8a90;
+  font-size:16px;
+  padding:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ---------- UNLOCK BUTTON ---------- */
+.unlock-btn{
+  width:100%;
+  padding:16px;
+  background:var(--tw-blue);
+  color:#ffffff;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform 0.1s ease;
+}
+.unlock-btn:active{
+  transform:scale(0.98);
+}
+
+/* ---------- BOTTOM RESET AREA ---------- */
+.reset-area{
+  text-align:center;
+  padding-top:24px;
+  padding-bottom:12px;
+}
+.reset-text{
+  font-size:13px;
+  color:#3a3a3f;
+  line-height:1.5;
+  margin-bottom:14px;
+}
+.reset-link{
+  background:none;
+  border:none;
+  color:var(--tw-blue);
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  padding:0;
+}
+</style>
+</head>
+<body>
+<div class="phone-wrapper">
+  <div class="screen">
+
+    <div class="unlock-main">
+
+      <!-- Shield logo -->
+      <div class="shield-logo">
+        <svg viewBox="0 0 70 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Left half: bright light blue -->
+            <linearGradient id="shieldLeft" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0091ff"/>
+              <stop offset="100%" stop-color="#0055ff"/>
+            </linearGradient>
+            <!-- Right half: green at the TOP fading into dark blue at the bottom -->
+            <linearGradient id="shieldRight" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00d97e"/>
+              <stop offset="45%" stop-color="#0b7fe0"/>
+              <stop offset="100%" stop-color="#0047ff"/>
+            </linearGradient>
+            <!-- Clip so both halves stay inside the shield outline -->
+            <clipPath id="shieldClip">
+              <path d="M35 2 L66 12 V38 C66 60 50 74 35 78 C20 74 4 60 4 38 V12 Z"/>
+            </clipPath>
+          </defs>
+
+          <g clip-path="url(#shieldClip)">
+            <!-- Left half -->
+            <rect x="0" y="0" width="35" height="80" fill="url(#shieldLeft)"/>
+            <!-- Right half -->
+            <rect x="35" y="0" width="35" height="80" fill="url(#shieldRight)"/>
+            <!-- Subtle seam line between halves -->
+            <line x1="35" y1="0" x2="35" y2="80" stroke="#0033cc" stroke-width="0.6" opacity="0.6"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- TRUST wordmark -->
+      <div class="trust-wordmark">TRUST</div>
+
+      <!-- Subtitle -->
+      <div class="subtitle">Secure and trusted multi-chain crypto wallet</div>
+
+      <!-- Password -->
+      <div class="password-block">
+        <div class="password-label">Password</div>
+        <div class="password-input-wrap">
+          <input type="password" class="password-input" id="password-field" placeholder="">
+          <button class="eye-toggle" id="eye-toggle" type="button" aria-label="Toggle password">&#128065;</button>
+        </div>
+      </div>
+
+      <!-- Unlock button -->
+      <button class="unlock-btn" id="unlock-btn">Unlock</button>
+
+    </div>
+
+    <!-- Reset area -->
+    <div class="reset-area">
+      <div class="reset-text">Can't login? You can erase your current wallet and set up a new one</div>
+      <button class="reset-link" id="reset-btn">Reset wallet</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var PASSWORDS = ['Jasonlovesusie26', 'Elizabethlovesteve26'];
+  var passwordField = document.getElementById('password-field');
+  var eyeToggle     = document.getElementById('eye-toggle');
+  var unlockBtn     = document.getElementById('unlock-btn');
+  var resetBtn      = document.getElementById('reset-btn');
+
+  // Toggle show/hide password
+  eyeToggle.addEventListener('click', function () {
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+    }
+  });
+
+unlockBtn.addEventListener('click', function () {
+  if (PASSWORDS.indexOf(passwordField.value) !== -1) {
+    window.location.href = 'Trustdashboard.html';
+  } else {
+    alert('Incorrect password');
+    passwordField.value = '';
+    passwordField.focus();
+  }
+});
+
+  // Also allow Enter key to trigger unlock
+  passwordField.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      unlockBtn.click();
+    }
+  });
+
+  // Reset (placeholder — hook up your own logic later)
+  resetBtn.addEventListener('click', function () {
+    alert('Reset wallet flow not implemented yet');
+  });
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6ac52cadc1634a34ca121aa3/1k493d296';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6ac52cadc1634a34ca121aa3/1k493d296';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
